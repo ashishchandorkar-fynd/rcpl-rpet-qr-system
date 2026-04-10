@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PRD — RCPL rPET QR Code Information System</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; color: #1a1a1a; background: #fff; line-height: 1.6; }
+
+  /* Cover Page */
+  .cover { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, #0D47A1 0%, #1565C0 50%, #1976D2 100%); color: #fff; text-align: center; padding: 40px; page-break-after: always; }
+  .cover-logo { width: 80px; height: 80px; background: rgba(255,255,255,0.15); border: 3px solid rgba(255,255,255,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 900; margin: 0 auto 24px; }
+  .cover h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
+  .cover h2 { font-size: 18px; font-weight: 400; opacity: 0.85; margin-bottom: 40px; }
+  .cover-divider { width: 60px; height: 3px; background: rgba(255,255,255,0.5); margin: 0 auto 40px; }
+  .cover-meta { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 24px 40px; display: inline-block; }
+  .cover-meta table { border-collapse: collapse; }
+  .cover-meta td { padding: 6px 20px; text-align: left; }
+  .cover-meta td:first-child { font-weight: 600; opacity: 0.7; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+  .cover-meta td:last-child { font-size: 14px; font-weight: 500; }
+  .cover-badge { margin-top: 32px; background: #4CAF50; color: white; padding: 6px 20px; border-radius: 20px; font-size: 12px; font-weight: 600; display: inline-block; }
+
+  /* Content */
+  .content { max-width: 900px; margin: 0 auto; padding: 40px 50px; }
+  h2.section { font-size: 18px; color: #0D47A1; border-bottom: 2px solid #1565C0; padding-bottom: 8px; margin: 36px 0 16px; }
+  h3 { font-size: 14px; color: #1565C0; margin: 20px 0 10px; }
+  p { margin-bottom: 10px; color: #333; }
+  ul, ol { margin-left: 24px; margin-bottom: 12px; }
+  li { margin-bottom: 4px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 12px; }
+  th { background: #1565C0; color: white; padding: 9px 12px; text-align: left; font-weight: 600; }
+  td { padding: 8px 12px; border-bottom: 1px solid #e8eef6; vertical-align: top; }
+  tr:nth-child(even) { background: #f5f8ff; }
+  tr:hover { background: #e8f0fe; }
+
+  /* Code blocks */
+  pre { background: #1e2330; color: #a8d8ea; padding: 16px; border-radius: 8px; font-family: 'Consolas', monospace; font-size: 12px; overflow-x: auto; margin-bottom: 16px; line-height: 1.5; }
+
+  /* Info boxes */
+  .box { border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+  .box-blue { background: #E3F2FD; border-left: 4px solid #1565C0; }
+  .box-green { background: #E8F5E9; border-left: 4px solid #2E7D32; }
+  .box-orange { background: #FFF3E0; border-left: 4px solid #E65100; }
+  .box-red { background: #FFEBEE; border-left: 4px solid #C62828; }
+  .box strong { color: #0D47A1; }
+
+  /* Priority badges */
+  .p0 { display: inline-block; background: #C62828; color: white; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-right: 4px; }
+  .p1 { display: inline-block; background: #E65100; color: white; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-right: 4px; }
+  .p2 { display: inline-block; background: #1565C0; color: white; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-right: 4px; }
+
+  /* Checklist */
+  .checklist li::before { content: "☐ "; color: #1565C0; font-weight: bold; }
+  .checklist { list-style: none; margin-left: 0; }
+
+  /* TOC */
+  .toc { background: #f5f8ff; border: 1px solid #c5d5ea; border-radius: 8px; padding: 20px 24px; margin-bottom: 32px; }
+  .toc h3 { color: #0D47A1; margin-top: 0; font-size: 14px; margin-bottom: 12px; }
+  .toc ol { margin-left: 20px; }
+  .toc li { margin-bottom: 4px; color: #1565C0; font-size: 13px; }
+
+  /* Phase timeline */
+  .phase { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 12px; }
+  .phase-num { width: 28px; height: 28px; background: #1565C0; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .phase-body strong { color: #0D47A1; }
+
+  /* Print */
+  @media print {
+    .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page-break { page-break-before: always; }
+  }
+
+  /* Header bar on content pages */
+  .page-header { background: #0D47A1; color: white; padding: 10px 50px; font-size: 11px; display: flex; justify-content: space-between; position: fixed; top: 0; left: 0; right: 0; z-index: 10; }
+  @media screen { body { padding-top: 40px; } }
+  @media print { .page-header { display: none; } }
+</style>
+</head>
+<body>
+
+<!-- Fixed header -->
+<div class="page-header">
+  <span>RCPL rPET QR Code Information System — PRD v1.0</span>
+  <span>CONFIDENTIAL · April 2026</span>
+</div>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <div class="cover-logo">R</div>
+  <h1>RCPL rPET QR Code<br/>Information System</h1>
+  <h2>Product Requirements Document</h2>
+  <div class="cover-divider"></div>
+  <div class="cover-meta">
+    <table>
+      <tr><td>Prepared by</td><td>Ashish Chandorkar</td></tr>
+      <tr><td>Organisation</td><td>RCPL Pvt Ltd</td></tr>
+      <tr><td>Version</td><td>1.0 — Initial Release</td></tr>
+      <tr><td>Date</td><td>April 2026</td></tr>
+      <tr><td>Classification</td><td>Internal — Confidential</td></tr>
+    </table>
+  </div>
+  <div class="cover-badge">✓ Approved for Development</div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- TOC -->
+  <div class="toc">
+    <h3>📋 Table of Contents</h3>
+    <ol>
+      <li>Executive Summary</li>
+      <li>Problem Statement</li>
+      <li>Stakeholders</li>
+      <li>User Stories</li>
+      <li>Functional Requirements</li>
+      <li>Non-Functional Requirements</li>
+      <li>System Architecture</li>
+      <li>Data Model</li>
+      <li>API Specification</li>
+      <li>UI/UX Requirements</li>
+      <li>Success Metrics</li>
+      <li>Out of Scope</li>
+      <li>Risks &amp; Mitigations</li>
+      <li>Acceptance Criteria</li>
+      <li>Delivery Plan</li>
+    </ol>
+  </div>
+
+  <!-- 1. Executive Summary -->
+  <h2 class="section">1. Executive Summary</h2>
+  <div class="box box-blue">
+    <strong>Project:</strong> RCPL requires a QR Code-based product information system for their <strong>rPET</strong> product line. A QR code is already purchased from QR Planet. This system provides three independent components: consumer landing page, product information display, and regulatory admin portal. The system must be <strong>fully independent</strong> from existing RLL/RCPM QR systems.
+  </div>
+  <p>The key deliverable is a <strong>URL</strong> that RCPL's regulatory team maps to the QR Planet-hosted QR code. Consumers scan the QR code on the bottle, enter the batch code (first 1–2 characters printed on the bottle neck), and instantly see manufacturer and FSSAI compliance details on their mobile device.</p>
+  <table>
+    <tr><th>Metric</th><th>Target</th><th>Metric</th><th>Target</th></tr>
+    <tr><td>Consumer page load</td><td>&lt; 3 seconds on 4G</td><td>API response time</td><td>&lt; 500ms P95</td></tr>
+    <tr><td>End-to-end QR flow</td><td>&lt; 10 seconds</td><td>Admin onboarding</td><td>&lt; 30 minutes</td></tr>
+  </table>
+
+  <!-- 2. Problem Statement -->
+  <h2 class="section">2. Problem Statement</h2>
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+    <div class="box box-red">
+      <strong>Consumer Problem</strong><br/>
+      Consumers have no easy way to verify rPET product authenticity, manufacturer details, or FSSAI compliance. Regulatory requirements mandate this information be accessible via QR code.
+    </div>
+    <div class="box box-orange">
+      <strong>Regulatory Team Problem</strong><br/>
+      The existing vendor management system (RLL/RCPM) cannot be modified. A new independent system is needed that the regulatory team can update without IT dependency for each change.
+    </div>
+  </div>
+  <div class="box box-green">
+    <strong>Solution:</strong> Three-component web system (Consumer Landing Page → Batch Code Lookup → Admin Data Portal) deployed as an independent URL, mapped to the existing QR Planet QR code.
+  </div>
+
+  <!-- 3. Stakeholders -->
+  <h2 class="section">3. Stakeholders</h2>
+  <table>
+    <tr><th>Stakeholder</th><th>Role</th><th>Primary Need</th></tr>
+    <tr><td>Consumers</td><td>End users scanning QR code on bottle</td><td>Fast, mobile-friendly product info</td></tr>
+    <tr><td>Nidhi (Regulatory Team)</td><td>Data manager — adds/edits rPET records</td><td>Simple admin form, no code changes</td></tr>
+    <tr><td>RCPL IT (Ashcharna/Pankaj)</td><td>Technical reference for existing system</td><td>Zero changes to RLL/RCPM systems</td></tr>
+    <tr><td>Ashish Chandorkar</td><td>Developer &amp; system owner</td><td>Clear requirements, URL to QR Planet</td></tr>
+    <tr><td>QR Planet</td><td>QR code provider</td><td>Landing page URL for QR code mapping</td></tr>
+  </table>
+
+  <!-- 4. User Stories -->
+  <h2 class="section">4. User Stories</h2>
+  <h3>Consumer Stories</h3>
+  <table>
+    <tr><th>ID</th><th>As a…</th><th>I want to…</th><th>So that…</th></tr>
+    <tr><td>US-01</td><td>Consumer</td><td>Scan QR and see manufacturer details</td><td>I can verify product authenticity</td></tr>
+    <tr><td>US-02</td><td>Consumer</td><td>Enter only 1-2 chars from bottle neck</td><td>The process is quick on mobile</td></tr>
+    <tr><td>US-03</td><td>Consumer</td><td>See FSSAI license, vendor name, address</td><td>I have complete compliance information</td></tr>
+    <tr><td>US-04</td><td>Consumer</td><td>Page loads fast on mobile data</td><td>I don't wait more than 3 seconds</td></tr>
+  </table>
+  <h3>Regulatory Team Stories</h3>
+  <table>
+    <tr><th>ID</th><th>As a…</th><th>I want to…</th><th>So that…</th></tr>
+    <tr><td>US-05</td><td>Regulatory team member</td><td>Add new rPET product records</td><td>Consumer info stays current</td></tr>
+    <tr><td>US-06</td><td>Regulatory team member</td><td>Edit FSSAI license or address</td><td>Records are always accurate</td></tr>
+    <tr><td>US-07</td><td>Regulatory team member</td><td>Deactivate discontinued products</td><td>Outdated products don't show to consumers</td></tr>
+    <tr><td>US-08</td><td>Regulatory team member</td><td>Search products by vendor/category</td><td>I can find records quickly</td></tr>
+  </table>
+
+  <!-- 5. Functional Requirements -->
+  <h2 class="section">5. Functional Requirements</h2>
+  <h3><span class="p0">P0</span> Must Have — Launch Blockers</h3>
+  <table>
+    <tr><th>ID</th><th>Requirement</th></tr>
+    <tr><td>FR-01</td><td>Consumer landing page with QR scan instructions (3-5 lines) and batch code input field</td></tr>
+    <tr><td>FR-02</td><td>Batch code entry: 1-10 alphanumeric characters, case-insensitive, auto-uppercase transform</td></tr>
+    <tr><td>FR-03</td><td>Product info display: Product Name, Category, Subcategory, Vendor Name, Vendor Address, Manufacturer, FSSAI License, SKU, Status</td></tr>
+    <tr><td>FR-04</td><td>Admin form to CREATE product records with all required fields and FSSAI validation</td></tr>
+    <tr><td>FR-05</td><td>Admin form to EDIT existing product records (batch_code immutable after creation)</td></tr>
+    <tr><td>FR-06</td><td>Inactive product codes return friendly "information not available" message</td></tr>
+    <tr><td>FR-07</td><td>Non-existent codes return "product not found" with clear guidance</td></tr>
+    <tr><td>FR-08</td><td>System provides a standalone deployable URL for QR Planet mapping</td></tr>
+  </table>
+  <h3><span class="p1">P1</span> Should Have</h3>
+  <table>
+    <tr><th>ID</th><th>Requirement</th></tr>
+    <tr><td>FR-09</td><td>Admin product list with search (vendor name, category, batch code)</td></tr>
+    <tr><td>FR-10</td><td>Paginated admin product list (15 per page)</td></tr>
+    <tr><td>FR-11</td><td>Admin soft-delete (deactivate) with confirmation modal</td></tr>
+    <tr><td>FR-12</td><td>FSSAI validation: exactly 14 digits, numeric only</td></tr>
+    <tr><td>FR-13</td><td>Rate limiting on public endpoint (100 req / 15 min)</td></tr>
+    <tr><td>FR-14</td><td>Health check endpoint at /health</td></tr>
+  </table>
+  <h3><span class="p2">P2</span> Future Sprints</h3>
+  <table>
+    <tr><th>ID</th><th>Requirement</th></tr>
+    <tr><td>FR-15</td><td>Admin portal authentication (login credentials for regulatory team)</td></tr>
+    <tr><td>FR-16</td><td>Audit log of all admin changes (who changed what, when)</td></tr>
+    <tr><td>FR-17</td><td>Bulk import via CSV for initial data migration</td></tr>
+    <tr><td>FR-18</td><td>QR code generation preview in admin portal</td></tr>
+  </table>
+
+  <!-- 6. NFR -->
+  <h2 class="section">6. Non-Functional Requirements</h2>
+  <table>
+    <tr><th>Category</th><th>Requirement</th></tr>
+    <tr><td><strong>Performance</strong></td><td>Consumer pages: &lt; 3s on 4G mobile. API lookup: &lt; 500ms P95</td></tr>
+    <tr><td><strong>Mobile-first</strong></td><td>Landing page and product info page optimised for 375px+ (iPhone SE) upward</td></tr>
+    <tr><td><strong>Security</strong></td><td>Helmet.js headers, input sanitisation (express-validator), parameterised queries, rate limiting</td></tr>
+    <tr><td><strong>Availability</strong></td><td>99% uptime; SQLite WAL mode for concurrent reads</td></tr>
+    <tr><td><strong>Independence</strong></td><td>Zero dependencies on existing RLL/RCPM vendor management system</td></tr>
+    <tr><td><strong>URL Stability</strong></td><td>Public URL must not change once mapped to QR Planet</td></tr>
+    <tr><td><strong>Data Integrity</strong></td><td>batch_code is UNIQUE; FSSAI is 14-digit validated; status check constraint</td></tr>
+  </table>
+
+  <!-- 7. Architecture -->
+  <h2 class="section">7. System Architecture</h2>
+  <pre>┌──────────────────────────────────────────────────────────┐
+│  QR Planet (3rd party)                                   │
+│  QR Code ──maps to──▶ https://[your-domain]/            │
+└───────────────────────────┬──────────────────────────────┘
+                            │ Consumer scans QR code
+                            ▼
+┌──────────────────────────────────────────────────────────┐
+│  FRONTEND  (React 18 + TypeScript + Tailwind CSS, Vite) │
+│  /              ──▶ Landing Page (batch code search)     │
+│  /product/:code ──▶ Product Info Page (lookup result)   │
+│  /admin/*       ──▶ Admin Portal (regulatory team CRUD) │
+└───────────────────────────┬──────────────────────────────┘
+                            │ REST API (JSON)
+                            ▼
+┌──────────────────────────────────────────────────────────┐
+│  BACKEND  (Node.js + Express + Helmet + Rate Limiter)   │
+│  GET  /api/products/lookup?code=XX  ◀── Public          │
+│  GET/POST/PUT/DELETE /api/admin/*   ◀── Regulatory team │
+│  GET  /health                       ◀── Monitoring      │
+└───────────────────────────┬──────────────────────────────┘
+                            │ better-sqlite3
+                            ▼
+┌──────────────────────────────────────────────────────────┐
+│  DATABASE  (SQLite, WAL mode)                           │
+│  Table: rpet_products                                  │
+│  batch_code (UNIQUE NOCASE), category, vendor_name,     │
+│  fssai_license, status, created_at, updated_at, ...    │
+└──────────────────────────────────────────────────────────┘</pre>
+
+  <!-- 8. Data Model -->
+  <h2 class="section">8. Data Model</h2>
+  <h3>Table: <code>rpet_products</code></h3>
+  <table>
+    <tr><th>Column</th><th>Type</th><th>Constraints</th><th>Description</th></tr>
+    <tr><td>id</td><td>INTEGER</td><td>PRIMARY KEY AUTOINCREMENT</td><td>Internal identifier</td></tr>
+    <tr><td>batch_code</td><td>TEXT</td><td>UNIQUE, NOT NULL, COLLATE NOCASE</td><td>Printed on bottle neck (e.g. "AA")</td></tr>
+    <tr><td>category</td><td>TEXT</td><td>NOT NULL</td><td>e.g. "Dairy"</td></tr>
+    <tr><td>subcategory</td><td>TEXT</td><td>NOT NULL</td><td>e.g. "Full Cream Milk"</td></tr>
+    <tr><td>vendor_name</td><td>TEXT</td><td>NOT NULL</td><td>Manufacturing unit name</td></tr>
+    <tr><td>vendor_address</td><td>TEXT</td><td>NOT NULL</td><td>Full address with PIN code</td></tr>
+    <tr><td>fssai_license</td><td>TEXT</td><td>NOT NULL</td><td>14-digit FSSAI license number</td></tr>
+    <tr><td>sku</td><td>TEXT</td><td>nullable</td><td>Stock Keeping Unit code</td></tr>
+    <tr><td>product_name</td><td>TEXT</td><td>nullable</td><td>Full product name</td></tr>
+    <tr><td>manufacturer</td><td>TEXT</td><td>nullable</td><td>Parent company name</td></tr>
+    <tr><td>status</td><td>TEXT</td><td>DEFAULT 'active', CHECK IN ('active','inactive')</td><td>Active / Inactive</td></tr>
+    <tr><td>created_at</td><td>TEXT</td><td>DEFAULT datetime('now')</td><td>ISO 8601 timestamp</td></tr>
+    <tr><td>updated_at</td><td>TEXT</td><td>DEFAULT datetime('now')</td><td>ISO 8601 timestamp</td></tr>
+  </table>
+
+  <!-- 9. API -->
+  <h2 class="section">9. API Specification</h2>
+  <h3>Public Endpoint</h3>
+  <table>
+    <tr><th>Method</th><th>Path</th><th>Auth</th><th>Description</th></tr>
+    <tr><td>GET</td><td>/api/products/lookup?code={batchCode}</td><td>None</td><td>Consumer product lookup by batch code</td></tr>
+    <tr><td>GET</td><td>/health</td><td>None</td><td>Service health check</td></tr>
+  </table>
+  <table>
+    <tr><th>Response</th><th>Status</th><th>Condition</th></tr>
+    <tr><td><code>{ success: true, data: RpetProduct }</code></td><td>200</td><td>Valid active code</td></tr>
+    <tr><td><code>{ success: false, error: "not currently available" }</code></td><td>400</td><td>Code exists but product inactive</td></tr>
+    <tr><td><code>{ success: false, error: "No product found..." }</code></td><td>404</td><td>Code does not exist</td></tr>
+    <tr><td><code>{ success: false, error: "validation message" }</code></td><td>400</td><td>Invalid code format</td></tr>
+  </table>
+  <h3>Admin Endpoints</h3>
+  <table>
+    <tr><th>Method</th><th>Path</th><th>Description</th></tr>
+    <tr><td>GET</td><td>/api/admin/products?page=1&amp;limit=20</td><td>List all products (paginated)</td></tr>
+    <tr><td>GET</td><td>/api/admin/products/search?q=query</td><td>Search products</td></tr>
+    <tr><td>GET</td><td>/api/admin/products/:id</td><td>Get single product</td></tr>
+    <tr><td>POST</td><td>/api/admin/products</td><td>Create product (201)</td></tr>
+    <tr><td>PUT</td><td>/api/admin/products/:id</td><td>Update product</td></tr>
+    <tr><td>DELETE</td><td>/api/admin/products/:id</td><td>Soft-delete (set inactive)</td></tr>
+  </table>
+
+  <!-- 10. UX -->
+  <h2 class="section">10. UI/UX Requirements</h2>
+  <table>
+    <tr><th>Page</th><th>Key Elements</th><th>Design Notes</th></tr>
+    <tr><td><strong>Landing Page</strong> (/)</td><td>RCPL logo, 3-step instruction box, batch code input, "Get Product Details" button, footer</td><td>Mobile-first, blue gradient bg, white card, large monospace input, auto-uppercase</td></tr>
+    <tr><td><strong>Product Info</strong> (/product/:code)</td><td>Back button, batch code display, product name hero, 3 info cards, status badge, loading skeleton</td><td>Info cards: Product Details, Manufacturer Details, Compliance. Shimmer skeleton loading.</td></tr>
+    <tr><td><strong>Admin Portal</strong> (/admin/*)</td><td>Collapsible sidebar, product table with search+pagination, Create/Edit form, confirmation modal, toasts</td><td>Desktop-optimised, responsive on mobile. Blue theme. Inline validation.</td></tr>
+  </table>
+
+  <!-- 11. Metrics -->
+  <h2 class="section">11. Success Metrics</h2>
+  <table>
+    <tr><th>Metric</th><th>Target</th><th>Measurement Method</th></tr>
+    <tr><td>Consumer page load time</td><td>&lt; 3 seconds on 4G</td><td>Lighthouse / browser DevTools</td></tr>
+    <tr><td>API lookup response P95</td><td>&lt; 500ms</td><td>Server logs / monitoring</td></tr>
+    <tr><td>QR scan → info display</td><td>&lt; 10 seconds</td><td>Manual end-to-end test</td></tr>
+    <tr><td>Admin onboarding time</td><td>&lt; 30 minutes</td><td>User observation</td></tr>
+    <tr><td>Admin form error rate</td><td>&lt; 2% of submissions</td><td>Validation error logs</td></tr>
+  </table>
+
+  <!-- 12. Out of Scope -->
+  <h2 class="section">12. Out of Scope</h2>
+  <ul>
+    <li>Integration with existing RLL/RCPM vendor management system</li>
+    <li>Consumer authentication or account creation</li>
+    <li>QR code generation (handled by QR Planet)</li>
+    <li>Email/SMS notifications</li>
+    <li>Multi-language support (Hindi, regional languages)</li>
+    <li>Native mobile app</li>
+    <li>Price or inventory information</li>
+  </ul>
+
+  <!-- 13. Risks -->
+  <h2 class="section">13. Risks &amp; Mitigations</h2>
+  <table>
+    <tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th></tr>
+    <tr><td>QR Planet URL mapping delay</td><td>Low</td><td>High</td><td>Provide URL early; test with direct URL first</td></tr>
+    <tr><td>Regulatory team needs more fields</td><td>Medium</td><td>Medium</td><td>Schema designed with optional fields; easy to add columns</td></tr>
+    <tr><td>Mobile network failures</td><td>Medium</td><td>High</td><td>Error states with retry; loading skeletons for perceived performance</td></tr>
+    <tr><td>SQLite concurrency under load</td><td>Low</td><td>Medium</td><td>WAL mode enabled; upgrade to PostgreSQL if traffic grows</td></tr>
+    <tr><td>Admin portal misuse (no auth)</td><td>Medium</td><td>Medium</td><td>P2: Add login auth in Sprint 2</td></tr>
+  </table>
+
+  <!-- 14. Acceptance Criteria -->
+  <h2 class="section">14. Acceptance Criteria</h2>
+  <ul class="checklist">
+    <li>Consumer can scan QR, enter "AA", see full product details within 10 seconds on mobile</li>
+    <li>Inactive product code returns "information not available" (not a 404 error)</li>
+    <li>Non-existent code returns friendly "product not found" with back button</li>
+    <li>Admin can create a new product record with all required fields</li>
+    <li>Admin can edit vendor address and FSSAI license number</li>
+    <li>Admin can deactivate a product (soft delete with confirmation)</li>
+    <li>FSSAI validation rejects anything that is not exactly 14 digits</li>
+    <li>All pages render correctly on iPhone SE (375px) screen width</li>
+    <li>CI/CD pipeline passes: lint → test → build → security audit</li>
+    <li>Landing page URL is provided for QR Planet mapping</li>
+  </ul>
+
+  <!-- 15. Delivery Plan -->
+  <h2 class="section">15. Delivery Plan</h2>
+  <div>
+    <div class="phase"><div class="phase-num">0</div><div class="phase-body"><strong>Foundation</strong> — CLAUDE.md, package.json, tsconfig, .gitignore, CI/CD pipeline <em>(Day 1)</em></div></div>
+    <div class="phase"><div class="phase-num">1</div><div class="phase-body"><strong>Backend API</strong> — Express + SQLite + all endpoints (lookup + admin CRUD) <em>(Day 1)</em></div></div>
+    <div class="phase"><div class="phase-num">2</div><div class="phase-body"><strong>Consumer Frontend</strong> — Landing Page + Product Info Page (mobile-first, React + Tailwind) <em>(Day 1–2)</em></div></div>
+    <div class="phase"><div class="phase-num">3</div><div class="phase-body"><strong>Admin Portal</strong> — Product list, create/edit forms, pagination, search <em>(Day 2)</em></div></div>
+    <div class="phase"><div class="phase-num">4</div><div class="phase-body"><strong>Testing</strong> — Unit + integration tests for frontend and backend <em>(Day 2)</em></div></div>
+    <div class="phase"><div class="phase-num">5</div><div class="phase-body"><strong>Security Review + Deployment</strong> — URL delivery to QR Planet team <em>(Day 3)</em></div></div>
+    <div class="phase"><div class="phase-num">6</div><div class="phase-body"><strong>Demo &amp; Feedback</strong> — Regulatory team walkthrough, Nidhi shares final variable list <em>(Week 2)</em></div></div>
+  </div>
+
+  <br/><br/>
+  <div style="border-top: 2px solid #1565C0; padding-top: 12px; text-align: center; color: #888; font-size: 11px;">
+    RCPL rPET QR Code Information System · PRD v1.0 · Ashish Chandorkar · April 2026<br/>
+    Generated with Claude Code (Opus 4.6) · Multi-Agent SDLC Framework
+  </div>
+
+</div>
+</body>
+</html>
