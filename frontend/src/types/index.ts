@@ -44,6 +44,31 @@ export interface ApiResponse<T = unknown> {
   message?: string;
 }
 
+export interface RpetDeclaration {
+  id?: number;
+  combined_code: string;
+  product_name: string;
+  sku: string;
+  manufacturing_location: string;
+  recycle_content: number;
+  pwm_reg_no: string;
+  status: 'active' | 'inactive';
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface CreateDeclarationDto {
+  combined_code: string;
+  product_name: string;
+  sku: string;
+  manufacturing_location: string;
+  recycle_content: number;
+  pwm_reg_no: string;
+  status?: 'active' | 'inactive';
+}
+
+export type UpdateDeclarationDto = Partial<Omit<CreateDeclarationDto, 'combined_code'>>;
+
 export type ToastType = 'success' | 'error' | 'info';
 
 export interface Toast {

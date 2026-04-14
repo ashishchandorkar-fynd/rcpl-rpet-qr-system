@@ -7,6 +7,8 @@ import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import productsRouter from './routes/products';
 import adminRouter from './routes/admin';
+import rpetRouter from './routes/rpet';
+import adminRpetRouter from './routes/adminRpet';
 import { errorHandler } from './middleware/errorHandler';
 import { getDb } from './database';
 
@@ -23,6 +25,8 @@ const adminLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 300 });
 
 app.use('/api/products', publicLimiter, productsRouter);
 app.use('/api/admin/products', adminLimiter, adminRouter);
+app.use('/api/rpet', publicLimiter, rpetRouter);
+app.use('/api/admin/rpet', adminLimiter, adminRpetRouter);
 
 app.get('/health', (_req, res) => {
   res.json({ success: true, message: 'RCPL rPET API is running', timestamp: new Date().toISOString() });

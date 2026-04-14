@@ -30,32 +30,67 @@ export default function AdminPortal() {
               </div>
             </div>
           </div>
-          <nav className="flex-1 p-4 space-y-1">
-            <NavLink
-              to="/admin/products"
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${isActive ? 'bg-primary-600 text-white' : 'text-primary-200 hover:bg-primary-700 hover:text-white'}`
-              }
-              onClick={() => setSidebarOpen(false)}
-            >
-              <span>📋</span> Products
-            </NavLink>
-            <NavLink
-              to="/admin/products/new"
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${isActive ? 'bg-primary-600 text-white' : 'text-primary-200 hover:bg-primary-700 hover:text-white'}`
-              }
-              onClick={() => setSidebarOpen(false)}
-            >
-              <span>➕</span> Add Product
-            </NavLink>
+          <nav className="flex-1 p-4 space-y-4 overflow-y-auto">
+            {/* FSSAI Products section */}
+            <div>
+              <p className="text-primary-400 text-xs font-semibold uppercase tracking-wider px-3 mb-1">FSSAI Products</p>
+              <NavLink
+                to="/admin/products"
+                end
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${isActive ? 'bg-primary-600 text-white' : 'text-primary-200 hover:bg-primary-700 hover:text-white'}`
+                }
+                onClick={() => setSidebarOpen(false)}
+              >
+                <span>📋</span> Products
+              </NavLink>
+              <NavLink
+                to="/admin/products/new"
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${isActive ? 'bg-primary-600 text-white' : 'text-primary-200 hover:bg-primary-700 hover:text-white'}`
+                }
+                onClick={() => setSidebarOpen(false)}
+              >
+                <span>➕</span> Add Product
+              </NavLink>
+            </div>
+
+            {/* rPET Declarations section */}
+            <div>
+              <p className="text-primary-400 text-xs font-semibold uppercase tracking-wider px-3 mb-1">rPET Declarations</p>
+              <NavLink
+                to="/admin/rpet"
+                end
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${isActive ? 'bg-green-600 text-white' : 'text-primary-200 hover:bg-primary-700 hover:text-white'}`
+                }
+                onClick={() => setSidebarOpen(false)}
+              >
+                <span>♻️</span> Declarations
+              </NavLink>
+              <NavLink
+                to="/admin/rpet/new"
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${isActive ? 'bg-green-600 text-white' : 'text-primary-200 hover:bg-primary-700 hover:text-white'}`
+                }
+                onClick={() => setSidebarOpen(false)}
+              >
+                <span>➕</span> Add Declaration
+              </NavLink>
+            </div>
           </nav>
-          <div className="p-4 border-t border-primary-700">
+          <div className="p-4 border-t border-primary-700 space-y-2">
             <button
               onClick={() => navigate('/')}
-              className="flex items-center gap-2 text-primary-300 text-xs hover:text-white transition-colors"
+              className="flex items-center gap-2 text-primary-300 text-xs hover:text-white transition-colors w-full"
             >
-              <span>←</span> View Consumer Page
+              <span>←</span> FSSAI Consumer Page
+            </button>
+            <button
+              onClick={() => navigate('/rpet')}
+              className="flex items-center gap-2 text-primary-300 text-xs hover:text-white transition-colors w-full"
+            >
+              <span>♻️</span> rPET Consumer Page
             </button>
           </div>
         </aside>

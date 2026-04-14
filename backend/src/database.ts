@@ -1,10 +1,12 @@
 import fs from 'fs';
 import path from 'path';
-import { RpetProduct } from './types';
+import { RpetProduct, RpetDeclaration } from './types';
 
 interface DbSchema {
   products: RpetProduct[];
   nextId: number;
+  declarations: RpetDeclaration[];
+  declNextId: number;
 }
 
 const DB_PATH = process.env.DB_PATH || path.join(__dirname, '..', 'rpet.json');
@@ -15,13 +17,17 @@ function read(): DbSchema {
   if (cache) return cache;
   if (fs.existsSync(DB_PATH)) {
     try {
-      cache = JSON.parse(fs.readFileSync(DB_PATH, 'utf-8')) as DbSchema;
+      const parsed = JSON.parse(fs.readFileSync(DB_PATH, 'utf-8')) as DbSchema;
+      // Migrate: add declarations if missing
+      if (!parsed.declarations) { parsed.declarations = []; parsed.declNextId = 1; }
+      if (!parsed.declNextId) parsed.declNextId = (parsed.declarations.length || 0) + 1;
+      cache = parsed;
       return cache;
     } catch {
       // fall through to seed
     }
   }
-  cache = { products: [], nextId: 1 };
+  cache = { products: [], nextId: 1, declarations: [], declNextId: 1 };
   seed(cache);
   write(cache);
   return cache;
@@ -35,6 +41,27 @@ function write(data: DbSchema): void {
 function seed(data: DbSchema): void {
   const now = new Date().toISOString();
   data.nextId = 4;
+  data.declNextId = 3;
+  data.declarations = [
+    {
+      id: 1, combined_code: 'MBB306C',
+      product_name: 'RCPL rPET Water Bottle 500ml',
+      sku: 'RCPL-PET-500',
+      manufacturing_location: 'Plot No. 12, MIDC Industrial Area, Navi Mumbai - 400710, Maharashtra, India',
+      recycle_content: 100,
+      pwm_reg_no: 'PWM/MH/2024/001234',
+      status: 'active', created_at: now, updated_at: now,
+    },
+    {
+      id: 2, combined_code: 'MBB312A',
+      product_name: 'RCPL rPET Juice Bottle 1L',
+      sku: 'RCPL-PET-1L',
+      manufacturing_location: 'Sector 5, Vashi, Navi Mumbai - 400703, Maharashtra, India',
+      recycle_content: 75,
+      pwm_reg_no: 'PWM/MH/2024/001235',
+      status: 'active', created_at: now, updated_at: now,
+    },
+  ];
   data.products = [
     {
       id: 1, batch_code: 'AA', category: 'Dairy', subcategory: 'Full Cream Milk',
