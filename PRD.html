@@ -20,11 +20,14 @@
   .cover-meta td:first-child { font-weight: 600; opacity: 0.7; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
   .cover-meta td:last-child { font-size: 14px; font-weight: 500; }
   .cover-badge { margin-top: 32px; background: #4CAF50; color: white; padding: 6px 20px; border-radius: 20px; font-size: 12px; font-weight: 600; display: inline-block; }
+  .cover-badge-v2 { margin-top: 12px; background: rgba(255,255,255,0.2); color: white; padding: 4px 16px; border-radius: 20px; font-size: 11px; font-weight: 500; display: inline-block; border: 1px solid rgba(255,255,255,0.3); }
 
   /* Content */
   .content { max-width: 900px; margin: 0 auto; padding: 40px 50px; }
   h2.section { font-size: 18px; color: #0D47A1; border-bottom: 2px solid #1565C0; padding-bottom: 8px; margin: 36px 0 16px; }
+  h2.section-green { font-size: 18px; color: #1B5E20; border-bottom: 2px solid #2E7D32; padding-bottom: 8px; margin: 36px 0 16px; }
   h3 { font-size: 14px; color: #1565C0; margin: 20px 0 10px; }
+  h3.green { color: #2E7D32; }
   p { margin-bottom: 10px; color: #333; }
   ul, ol { margin-left: 24px; margin-bottom: 12px; }
   li { margin-bottom: 4px; }
@@ -32,6 +35,7 @@
   /* Tables */
   table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 12px; }
   th { background: #1565C0; color: white; padding: 9px 12px; text-align: left; font-weight: 600; }
+  th.green { background: #2E7D32; }
   td { padding: 8px 12px; border-bottom: 1px solid #e8eef6; vertical-align: top; }
   tr:nth-child(even) { background: #f5f8ff; }
   tr:hover { background: #e8f0fe; }
@@ -43,14 +47,24 @@
   .box { border-radius: 8px; padding: 16px; margin-bottom: 16px; }
   .box-blue { background: #E3F2FD; border-left: 4px solid #1565C0; }
   .box-green { background: #E8F5E9; border-left: 4px solid #2E7D32; }
+  .box-teal { background: #E0F2F1; border-left: 4px solid #00695C; }
   .box-orange { background: #FFF3E0; border-left: 4px solid #E65100; }
   .box-red { background: #FFEBEE; border-left: 4px solid #C62828; }
   .box strong { color: #0D47A1; }
+  .box-green strong, .box-teal strong { color: #1B5E20; }
+
+  /* Version badge */
+  .version-tag { display: inline-block; background: #1565C0; color: white; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-left: 8px; vertical-align: middle; }
+  .version-tag.new { background: #2E7D32; }
 
   /* Priority badges */
   .p0 { display: inline-block; background: #C62828; color: white; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-right: 4px; }
   .p1 { display: inline-block; background: #E65100; color: white; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-right: 4px; }
   .p2 { display: inline-block; background: #1565C0; color: white; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-right: 4px; }
+
+  /* System tags */
+  .sys1 { display: inline-block; background: #1565C0; color: white; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; }
+  .sys2 { display: inline-block; background: #2E7D32; color: white; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; }
 
   /* Checklist */
   .checklist li::before { content: "☐ "; color: #1565C0; font-weight: bold; }
@@ -65,13 +79,19 @@
   /* Phase timeline */
   .phase { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 12px; }
   .phase-num { width: 28px; height: 28px; background: #1565C0; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .phase-num.green { background: #2E7D32; }
   .phase-body strong { color: #0D47A1; }
+  .phase-body strong.green { color: #1B5E20; }
+
+  /* Changelog table */
+  .changelog td:first-child { font-weight: 600; color: #0D47A1; font-family: monospace; }
 
   /* Print */
   @media print {
     .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .page-break { page-break-before: always; }
+    .sys1, .sys2, .version-tag, .version-tag.new { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 
   /* Header bar on content pages */
@@ -84,7 +104,7 @@
 
 <!-- Fixed header -->
 <div class="page-header">
-  <span>RCPL rPET QR Code Information System — PRD v1.0</span>
+  <span>RCPL rPET QR Code Information System — PRD v1.1</span>
   <span>CONFIDENTIAL · April 2026</span>
 </div>
 
@@ -98,16 +118,25 @@
     <table>
       <tr><td>Prepared by</td><td>Ashish Chandorkar</td></tr>
       <tr><td>Organisation</td><td>RCPL Pvt Ltd</td></tr>
-      <tr><td>Version</td><td>1.0 — Initial Release</td></tr>
+      <tr><td>Version</td><td>1.1 — rPET Declaration System Added</td></tr>
       <tr><td>Date</td><td>April 2026</td></tr>
       <tr><td>Classification</td><td>Internal — Confidential</td></tr>
     </table>
   </div>
   <div class="cover-badge">✓ Approved for Development</div>
+  <div class="cover-badge-v2">v1.1 · Dual QR System — FSSAI + PWM Declaration</div>
 </div>
 
 <!-- CONTENT -->
 <div class="content">
+
+  <!-- Changelog -->
+  <h2 class="section">Document Changelog</h2>
+  <table class="changelog">
+    <tr><th>Version</th><th>Date</th><th>Author</th><th>Changes</th></tr>
+    <tr><td>v1.0</td><td>April 2026</td><td>Ashish Chandorkar</td><td>Initial release — FSSAI Product Information QR System (System 1)</td></tr>
+    <tr><td>v1.1</td><td>April 2026</td><td>Ashish Chandorkar</td><td>Added System 2: rPET Plastic Recycle Declaration QR System. Updated architecture, data model, API spec, UX requirements, acceptance criteria, and delivery plan. Fixed DB layer: SQLite → JSON file store.</td></tr>
+  </table>
 
   <!-- TOC -->
   <div class="toc">
@@ -134,9 +163,22 @@
   <!-- 1. Executive Summary -->
   <h2 class="section">1. Executive Summary</h2>
   <div class="box box-blue">
-    <strong>Project:</strong> RCPL requires a QR Code-based product information system for their <strong>rPET</strong> product line. A QR code is already purchased from QR Planet. This system provides three independent components: consumer landing page, product information display, and regulatory admin portal. The system must be <strong>fully independent</strong> from existing RLL/RCPM QR systems.
+    <strong>Project:</strong> RCPL operates <strong>two independent QR Code systems</strong> within a single codebase, each serving a different regulatory requirement for their rPET product line. The system is fully independent from existing RLL/RCPM QR infrastructure.
   </div>
-  <p>The key deliverable is a <strong>URL</strong> that RCPL's regulatory team maps to the QR Planet-hosted QR code. Consumers scan the QR code on the bottle, enter the batch code (first 1–2 characters printed on the bottle neck), and instantly see manufacturer and FSSAI compliance details on their mobile device.</p>
+
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+    <div class="box box-blue">
+      <span class="sys1">System 1</span><br/><br/>
+      <strong>FSSAI Product Information</strong><br/>
+      QR code maps to <code>/</code>. Consumers enter a 1–2 character batch code from the bottle neck to retrieve manufacturer name, vendor address, and FSSAI compliance license number.
+    </div>
+    <div class="box box-teal">
+      <span class="sys2">System 2</span> <span class="version-tag new">NEW v1.1</span><br/><br/>
+      <strong>rPET Plastic Recycle Declaration</strong><br/>
+      QR code maps to <code>/rpet</code>. Consumers enter the full bottle neck code (e.g. <code>MBB306C</code>) to verify the recycled plastic content percentage, manufacturing location, and PWM registration number — as mandated by Plastic Waste Management Rules.
+    </div>
+  </div>
+
   <table>
     <tr><th>Metric</th><th>Target</th><th>Metric</th><th>Target</th></tr>
     <tr><td>Consumer page load</td><td>&lt; 3 seconds on 4G</td><td>API response time</td><td>&lt; 500ms P95</td></tr>
@@ -145,34 +187,38 @@
 
   <!-- 2. Problem Statement -->
   <h2 class="section">2. Problem Statement</h2>
-  <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
     <div class="box box-red">
-      <strong>Consumer Problem</strong><br/>
+      <strong>Consumer Problem — FSSAI</strong><br/>
       Consumers have no easy way to verify rPET product authenticity, manufacturer details, or FSSAI compliance. Regulatory requirements mandate this information be accessible via QR code.
     </div>
     <div class="box box-orange">
-      <strong>Regulatory Team Problem</strong><br/>
-      The existing vendor management system (RLL/RCPM) cannot be modified. A new independent system is needed that the regulatory team can update without IT dependency for each change.
+      <strong>Consumer Problem — PWM Rules</strong><br/>
+      India's Plastic Waste Management Rules require manufacturers to declare the recycled plastic content (rPET %) on packaging and make it verifiable. A QR-accessible declaration fulfils this mandate.
     </div>
   </div>
+  <div class="box box-orange">
+    <strong>Regulatory Team Problem:</strong> The existing vendor management system (RLL/RCPM) cannot be modified. A new independent system is needed that the regulatory team can update without IT dependency for each change.
+  </div>
   <div class="box box-green">
-    <strong>Solution:</strong> Three-component web system (Consumer Landing Page → Batch Code Lookup → Admin Data Portal) deployed as an independent URL, mapped to the existing QR Planet QR code.
+    <strong>Solution:</strong> Dual-system web application within a single monorepo. System 1 handles FSSAI batch code lookups. System 2 handles PWM recycle content declarations. Both share a single admin portal with separate sections. Each maps to its own QR Planet QR code URL.
   </div>
 
   <!-- 3. Stakeholders -->
   <h2 class="section">3. Stakeholders</h2>
   <table>
     <tr><th>Stakeholder</th><th>Role</th><th>Primary Need</th></tr>
-    <tr><td>Consumers</td><td>End users scanning QR code on bottle</td><td>Fast, mobile-friendly product info</td></tr>
-    <tr><td>Nidhi (Regulatory Team)</td><td>Data manager — adds/edits rPET records</td><td>Simple admin form, no code changes</td></tr>
+    <tr><td>Consumers</td><td>End users scanning QR code on bottle</td><td>Fast, mobile-friendly product info (both systems)</td></tr>
+    <tr><td>Nidhi (Regulatory Team)</td><td>Data manager — adds/edits all records</td><td>Simple admin forms, no code changes required</td></tr>
     <tr><td>RCPL IT (Ashcharna/Pankaj)</td><td>Technical reference for existing system</td><td>Zero changes to RLL/RCPM systems</td></tr>
-    <tr><td>Ashish Chandorkar</td><td>Developer &amp; system owner</td><td>Clear requirements, URL to QR Planet</td></tr>
-    <tr><td>QR Planet</td><td>QR code provider</td><td>Landing page URL for QR code mapping</td></tr>
+    <tr><td>Ashish Chandorkar</td><td>Developer &amp; system owner</td><td>Clear requirements, two URLs for QR Planet mapping</td></tr>
+    <tr><td>QR Planet</td><td>QR code provider</td><td>Two landing page URLs — one per QR system</td></tr>
+    <tr><td>PWM Compliance Authority</td><td>Regulatory body for plastic waste rules</td><td>Verifiable recycled content declaration on packaging</td></tr>
   </table>
 
   <!-- 4. User Stories -->
   <h2 class="section">4. User Stories</h2>
-  <h3>Consumer Stories</h3>
+  <h3>System 1 — FSSAI Consumer Stories</h3>
   <table>
     <tr><th>ID</th><th>As a…</th><th>I want to…</th><th>So that…</th></tr>
     <tr><td>US-01</td><td>Consumer</td><td>Scan QR and see manufacturer details</td><td>I can verify product authenticity</td></tr>
@@ -180,115 +226,196 @@
     <tr><td>US-03</td><td>Consumer</td><td>See FSSAI license, vendor name, address</td><td>I have complete compliance information</td></tr>
     <tr><td>US-04</td><td>Consumer</td><td>Page loads fast on mobile data</td><td>I don't wait more than 3 seconds</td></tr>
   </table>
-  <h3>Regulatory Team Stories</h3>
+  <h3 class="green">System 2 — rPET Declaration Consumer Stories <span class="version-tag new">NEW v1.1</span></h3>
   <table>
     <tr><th>ID</th><th>As a…</th><th>I want to…</th><th>So that…</th></tr>
-    <tr><td>US-05</td><td>Regulatory team member</td><td>Add new rPET product records</td><td>Consumer info stays current</td></tr>
+    <tr><td>US-09</td><td>Consumer</td><td>Scan QR and enter the full bottle neck code</td><td>I can verify the recycled plastic content of my bottle</td></tr>
+    <tr><td>US-10</td><td>Consumer</td><td>See the rPET recycled content percentage clearly</td><td>I can make an informed environmental choice</td></tr>
+    <tr><td>US-11</td><td>Consumer</td><td>See the manufacturing location and PWM registration</td><td>I have full compliance details for the plastic used</td></tr>
+  </table>
+  <h3>Regulatory Team Stories (Both Systems)</h3>
+  <table>
+    <tr><th>ID</th><th>As a…</th><th>I want to…</th><th>So that…</th></tr>
+    <tr><td>US-05</td><td>Regulatory team member</td><td>Add new rPET product records (System 1)</td><td>Consumer FSSAI info stays current</td></tr>
     <tr><td>US-06</td><td>Regulatory team member</td><td>Edit FSSAI license or address</td><td>Records are always accurate</td></tr>
     <tr><td>US-07</td><td>Regulatory team member</td><td>Deactivate discontinued products</td><td>Outdated products don't show to consumers</td></tr>
     <tr><td>US-08</td><td>Regulatory team member</td><td>Search products by vendor/category</td><td>I can find records quickly</td></tr>
+    <tr><td>US-12</td><td>Regulatory team member</td><td>Add/edit rPET recycle declarations (System 2)</td><td>PWM declaration data is always up to date</td></tr>
+    <tr><td>US-13</td><td>Regulatory team member</td><td>Set the recycle content % for each bottle SKU</td><td>Consumers see the correct rPET % for their product</td></tr>
+    <tr><td>US-14</td><td>Regulatory team member</td><td>Manage PWM registration numbers per declaration</td><td>Compliance records are maintained in one place</td></tr>
   </table>
 
   <!-- 5. Functional Requirements -->
   <h2 class="section">5. Functional Requirements</h2>
-  <h3><span class="p0">P0</span> Must Have — Launch Blockers</h3>
+  <h3>System 1 — FSSAI Product Information</h3>
+  <h3 style="color:#555; font-size:12px; font-weight:600; margin-top:4px;">P0 — Must Have (Launched)</h3>
   <table>
     <tr><th>ID</th><th>Requirement</th></tr>
-    <tr><td>FR-01</td><td>Consumer landing page with QR scan instructions (3-5 lines) and batch code input field</td></tr>
-    <tr><td>FR-02</td><td>Batch code entry: 1-10 alphanumeric characters, case-insensitive, auto-uppercase transform</td></tr>
-    <tr><td>FR-03</td><td>Product info display: Product Name, Category, Subcategory, Vendor Name, Vendor Address, Manufacturer, FSSAI License, SKU, Status</td></tr>
-    <tr><td>FR-04</td><td>Admin form to CREATE product records with all required fields and FSSAI validation</td></tr>
-    <tr><td>FR-05</td><td>Admin form to EDIT existing product records (batch_code immutable after creation)</td></tr>
-    <tr><td>FR-06</td><td>Inactive product codes return friendly "information not available" message</td></tr>
-    <tr><td>FR-07</td><td>Non-existent codes return "product not found" with clear guidance</td></tr>
-    <tr><td>FR-08</td><td>System provides a standalone deployable URL for QR Planet mapping</td></tr>
+    <tr><td>FR-01</td><td>Consumer landing page at <code>/</code> with RCPL branding, instructions, and batch code input</td></tr>
+    <tr><td>FR-02</td><td>Batch code entry: 1–10 alphanumeric characters, case-insensitive, auto-uppercase transform</td></tr>
+    <tr><td>FR-03</td><td>Product info display: Product Name, Category, Subcategory, Vendor Name, Address, Manufacturer, FSSAI License, SKU, Status</td></tr>
+    <tr><td>FR-04</td><td>Admin form to CREATE product records with all required fields and FSSAI 14-digit validation</td></tr>
+    <tr><td>FR-05</td><td>Admin form to EDIT records (<code>batch_code</code> immutable after creation)</td></tr>
+    <tr><td>FR-06</td><td>Inactive product codes return friendly "not available" message</td></tr>
+    <tr><td>FR-07</td><td>Non-existent codes return "product not found" with clear guidance and back button</td></tr>
+    <tr><td>FR-08</td><td>System provides standalone URL at <code>/</code> for QR Planet mapping</td></tr>
+    <tr><td>FR-09</td><td>Admin product list with search (vendor name, category, batch code) and pagination (15 per page)</td></tr>
+    <tr><td>FR-10</td><td>Admin soft-delete (deactivate) with confirmation modal</td></tr>
+    <tr><td>FR-11</td><td>FSSAI validation: exactly 14 digits, numeric only</td></tr>
+    <tr><td>FR-12</td><td>Rate limiting on public endpoint (100 req / 15 min per IP)</td></tr>
+    <tr><td>FR-13</td><td>Health check endpoint at <code>/health</code></td></tr>
   </table>
-  <h3><span class="p1">P1</span> Should Have</h3>
+
+  <h3 class="green">System 2 — rPET Plastic Recycle Declaration <span class="version-tag new">NEW v1.1</span></h3>
+  <h3 style="color:#555; font-size:12px; font-weight:600; margin-top:4px;">P0 — Must Have</h3>
   <table>
-    <tr><th>ID</th><th>Requirement</th></tr>
-    <tr><td>FR-09</td><td>Admin product list with search (vendor name, category, batch code)</td></tr>
-    <tr><td>FR-10</td><td>Paginated admin product list (15 per page)</td></tr>
-    <tr><td>FR-11</td><td>Admin soft-delete (deactivate) with confirmation modal</td></tr>
-    <tr><td>FR-12</td><td>FSSAI validation: exactly 14 digits, numeric only</td></tr>
-    <tr><td>FR-13</td><td>Rate limiting on public endpoint (100 req / 15 min)</td></tr>
-    <tr><td>FR-14</td><td>Health check endpoint at /health</td></tr>
+    <tr><th class="green">ID</th><th class="green">Requirement</th></tr>
+    <tr><td>FR-20</td><td>Consumer landing page at <code>/rpet</code> with green recycling theme, instructions for finding bottle neck code, and code input field</td></tr>
+    <tr><td>FR-21</td><td>Bottle neck code format: <code>[VendorCode][ProductVariantCode][SKUCode][RecycleCode]</code> — e.g. <code>MBB306C</code>, alphanumeric, auto-uppercase, up to 20 characters</td></tr>
+    <tr><td>FR-22</td><td>Declaration info page at <code>/rpet/product/:code</code> displaying: Product Name, SKU, Manufacturing Location (full address), Recycle Content (% with progress bar), PWM Registration Number</td></tr>
+    <tr><td>FR-23</td><td>Visual recycled content indicator — animated progress bar showing rPET percentage</td></tr>
+    <tr><td>FR-24</td><td>Declaration lookup returns only <code>active</code> records; inactive returns friendly error</td></tr>
+    <tr><td>FR-25</td><td>Admin CRUD for declarations: create, edit, deactivate, paginated list, search</td></tr>
+    <tr><td>FR-26</td><td><code>combined_code</code> is UNIQUE and immutable after creation</td></tr>
+    <tr><td>FR-27</td><td>Admin validates: <code>recycle_content</code> is numeric 0–100, all required fields present</td></tr>
+    <tr><td>FR-28</td><td>System provides standalone URL at <code>/rpet</code> for a second QR Planet mapping</td></tr>
   </table>
-  <h3><span class="p2">P2</span> Future Sprints</h3>
+
+  <h3><span class="p2">P2</span> Future Sprints (Both Systems)</h3>
   <table>
     <tr><th>ID</th><th>Requirement</th></tr>
     <tr><td>FR-15</td><td>Admin portal authentication (login credentials for regulatory team)</td></tr>
     <tr><td>FR-16</td><td>Audit log of all admin changes (who changed what, when)</td></tr>
     <tr><td>FR-17</td><td>Bulk import via CSV for initial data migration</td></tr>
     <tr><td>FR-18</td><td>QR code generation preview in admin portal</td></tr>
+    <tr><td>FR-19</td><td>Lookup code tables (Vendor / Product Variant / SKU / Recycle codes) manageable from admin UI</td></tr>
   </table>
 
   <!-- 6. NFR -->
   <h2 class="section">6. Non-Functional Requirements</h2>
   <table>
     <tr><th>Category</th><th>Requirement</th></tr>
-    <tr><td><strong>Performance</strong></td><td>Consumer pages: &lt; 3s on 4G mobile. API lookup: &lt; 500ms P95</td></tr>
-    <tr><td><strong>Mobile-first</strong></td><td>Landing page and product info page optimised for 375px+ (iPhone SE) upward</td></tr>
-    <tr><td><strong>Security</strong></td><td>Helmet.js headers, input sanitisation (express-validator), parameterised queries, rate limiting</td></tr>
-    <tr><td><strong>Availability</strong></td><td>99% uptime; SQLite WAL mode for concurrent reads</td></tr>
+    <tr><td><strong>Performance</strong></td><td>Consumer pages: &lt; 3s on 4G mobile. API lookup: &lt; 500ms P95 for both systems</td></tr>
+    <tr><td><strong>Mobile-first</strong></td><td>All consumer-facing pages optimised for 375px+ (iPhone SE) and upward</td></tr>
+    <tr><td><strong>Security</strong></td><td>Helmet.js headers, input sanitisation (express-validator), parameterised queries, rate limiting on all public endpoints</td></tr>
+    <tr><td><strong>Availability</strong></td><td>99% uptime target; JSON file DB with synchronous read/write, in-memory cache</td></tr>
     <tr><td><strong>Independence</strong></td><td>Zero dependencies on existing RLL/RCPM vendor management system</td></tr>
-    <tr><td><strong>URL Stability</strong></td><td>Public URL must not change once mapped to QR Planet</td></tr>
-    <tr><td><strong>Data Integrity</strong></td><td>batch_code is UNIQUE; FSSAI is 14-digit validated; status check constraint</td></tr>
+    <tr><td><strong>URL Stability</strong></td><td>Both <code>/</code> and <code>/rpet</code> URLs must remain stable once mapped to QR Planet</td></tr>
+    <tr><td><strong>Data Integrity</strong></td><td><code>batch_code</code> and <code>combined_code</code> are UNIQUE (case-insensitive); validated at both API and form layers</td></tr>
+    <tr><td><strong>Portability</strong></td><td>No native Node.js addons — pure JavaScript dependencies only (solves Node 24 / Xcode build issues)</td></tr>
   </table>
 
   <!-- 7. Architecture -->
   <h2 class="section">7. System Architecture</h2>
-  <pre>┌──────────────────────────────────────────────────────────┐
-│  QR Planet (3rd party)                                   │
-│  QR Code ──maps to──▶ https://[your-domain]/            │
-└───────────────────────────┬──────────────────────────────┘
-                            │ Consumer scans QR code
-                            ▼
-┌──────────────────────────────────────────────────────────┐
-│  FRONTEND  (React 18 + TypeScript + Tailwind CSS, Vite) │
-│  /              ──▶ Landing Page (batch code search)     │
-│  /product/:code ──▶ Product Info Page (lookup result)   │
-│  /admin/*       ──▶ Admin Portal (regulatory team CRUD) │
-└───────────────────────────┬──────────────────────────────┘
-                            │ REST API (JSON)
-                            ▼
-┌──────────────────────────────────────────────────────────┐
-│  BACKEND  (Node.js + Express + Helmet + Rate Limiter)   │
-│  GET  /api/products/lookup?code=XX  ◀── Public          │
-│  GET/POST/PUT/DELETE /api/admin/*   ◀── Regulatory team │
-│  GET  /health                       ◀── Monitoring      │
-└───────────────────────────┬──────────────────────────────┘
-                            │ better-sqlite3
-                            ▼
-┌──────────────────────────────────────────────────────────┐
-│  DATABASE  (SQLite, WAL mode)                           │
-│  Table: rpet_products                                  │
-│  batch_code (UNIQUE NOCASE), category, vendor_name,     │
-│  fssai_license, status, created_at, updated_at, ...    │
-└──────────────────────────────────────────────────────────┘</pre>
+  <pre>┌──────────────────────────────────────────────────────────────────────┐
+│  QR Planet (3rd party)                                               │
+│  QR Code A ──maps to──▶ https://[domain]/        (System 1 — FSSAI) │
+│  QR Code B ──maps to──▶ https://[domain]/rpet    (System 2 — PWM)   │
+└──────────────────────────────┬───────────────────────────────────────┘
+                               │ Consumer scans QR code
+                               ▼
+┌──────────────────────────────────────────────────────────────────────┐
+│  FRONTEND  (React 18 + TypeScript + Tailwind CSS, Vite, port 5173)  │
+│                                                                      │
+│  SYSTEM 1 — FSSAI                                                    │
+│  /                  ──▶ Landing Page (batch code search, blue theme) │
+│  /product/:code     ──▶ Product Info Page (FSSAI compliance details) │
+│                                                                      │
+│  SYSTEM 2 — rPET DECLARATION (NEW)                                   │
+│  /rpet              ──▶ Landing Page (bottle code search, green)     │
+│  /rpet/product/:code──▶ Declaration Info Page (recycled content %)  │
+│                                                                      │
+│  SHARED ADMIN PORTAL                                                 │
+│  /admin/products/*  ──▶ FSSAI product CRUD                          │
+│  /admin/rpet/*      ──▶ rPET declaration CRUD                       │
+└──────────────────────────────┬───────────────────────────────────────┘
+                               │ REST API over JSON
+                               ▼
+┌──────────────────────────────────────────────────────────────────────┐
+│  BACKEND  (Node.js + Express + Helmet + Rate Limiter, port 3001)    │
+│                                                                      │
+│  SYSTEM 1 PUBLIC                                                     │
+│  GET  /api/products/lookup?code=AA        ◀── Consumer lookup       │
+│                                                                      │
+│  SYSTEM 2 PUBLIC (NEW)                                               │
+│  GET  /api/rpet/lookup?code=MBB306C       ◀── Consumer lookup       │
+│                                                                      │
+│  ADMIN                                                               │
+│  GET/POST/PUT/DELETE /api/admin/products  ◀── FSSAI CRUD            │
+│  GET/POST/PUT/DELETE /api/admin/rpet      ◀── rPET declaration CRUD │
+│                                                                      │
+│  GET  /health                             ◀── Monitoring            │
+└──────────────────────────────┬───────────────────────────────────────┘
+                               │ fs.readFileSync / writeFileSync
+                               ▼
+┌──────────────────────────────────────────────────────────────────────┐
+│  DATABASE  (JSON file — rpet.json, in-memory cache)                 │
+│  Collection: products      (FSSAI product records)                  │
+│  Collection: declarations  (rPET recycle declaration records)        │
+│  No native modules — pure JavaScript, runs on any Node.js version   │
+└──────────────────────────────────────────────────────────────────────┘</pre>
+
+  <div class="box box-blue">
+    <strong>Tech Stack:</strong> React 18 · TypeScript (strict) · Tailwind CSS · Vite · @tanstack/react-query · React Router v6 · Node.js · Express.js · express-validator · Helmet.js · express-rate-limit · GitHub Actions CI/CD
+  </div>
 
   <!-- 8. Data Model -->
   <h2 class="section">8. Data Model</h2>
-  <h3>Table: <code>rpet_products</code></h3>
+  <h3>Collection: <code>products</code> (System 1 — FSSAI)</h3>
   <table>
-    <tr><th>Column</th><th>Type</th><th>Constraints</th><th>Description</th></tr>
-    <tr><td>id</td><td>INTEGER</td><td>PRIMARY KEY AUTOINCREMENT</td><td>Internal identifier</td></tr>
-    <tr><td>batch_code</td><td>TEXT</td><td>UNIQUE, NOT NULL, COLLATE NOCASE</td><td>Printed on bottle neck (e.g. "AA")</td></tr>
-    <tr><td>category</td><td>TEXT</td><td>NOT NULL</td><td>e.g. "Dairy"</td></tr>
-    <tr><td>subcategory</td><td>TEXT</td><td>NOT NULL</td><td>e.g. "Full Cream Milk"</td></tr>
-    <tr><td>vendor_name</td><td>TEXT</td><td>NOT NULL</td><td>Manufacturing unit name</td></tr>
-    <tr><td>vendor_address</td><td>TEXT</td><td>NOT NULL</td><td>Full address with PIN code</td></tr>
-    <tr><td>fssai_license</td><td>TEXT</td><td>NOT NULL</td><td>14-digit FSSAI license number</td></tr>
-    <tr><td>sku</td><td>TEXT</td><td>nullable</td><td>Stock Keeping Unit code</td></tr>
-    <tr><td>product_name</td><td>TEXT</td><td>nullable</td><td>Full product name</td></tr>
-    <tr><td>manufacturer</td><td>TEXT</td><td>nullable</td><td>Parent company name</td></tr>
-    <tr><td>status</td><td>TEXT</td><td>DEFAULT 'active', CHECK IN ('active','inactive')</td><td>Active / Inactive</td></tr>
-    <tr><td>created_at</td><td>TEXT</td><td>DEFAULT datetime('now')</td><td>ISO 8601 timestamp</td></tr>
-    <tr><td>updated_at</td><td>TEXT</td><td>DEFAULT datetime('now')</td><td>ISO 8601 timestamp</td></tr>
+    <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+    <tr><td>id</td><td>number</td><td>Auto</td><td>Internal auto-increment identifier</td></tr>
+    <tr><td>batch_code</td><td>string</td><td>Yes</td><td>UNIQUE (case-insensitive). Printed on bottle neck — e.g. "AA". Max 10 chars, alphanumeric.</td></tr>
+    <tr><td>category</td><td>string</td><td>Yes</td><td>Product category — e.g. "Dairy"</td></tr>
+    <tr><td>subcategory</td><td>string</td><td>Yes</td><td>Product subcategory — e.g. "Full Cream Milk"</td></tr>
+    <tr><td>vendor_name</td><td>string</td><td>Yes</td><td>Manufacturing unit / vendor name</td></tr>
+    <tr><td>vendor_address</td><td>string</td><td>Yes</td><td>Full address with PIN code</td></tr>
+    <tr><td>fssai_license</td><td>string</td><td>Yes</td><td>Exactly 14-digit FSSAI license number</td></tr>
+    <tr><td>sku</td><td>string</td><td>No</td><td>Stock Keeping Unit code</td></tr>
+    <tr><td>product_name</td><td>string</td><td>No</td><td>Full product name</td></tr>
+    <tr><td>manufacturer</td><td>string</td><td>No</td><td>Parent company / manufacturer name</td></tr>
+    <tr><td>status</td><td>'active' | 'inactive'</td><td>Auto</td><td>Default: 'active'. Soft-delete sets to 'inactive'.</td></tr>
+    <tr><td>created_at</td><td>string (ISO 8601)</td><td>Auto</td><td>Record creation timestamp</td></tr>
+    <tr><td>updated_at</td><td>string (ISO 8601)</td><td>Auto</td><td>Last modification timestamp</td></tr>
   </table>
+
+  <h3 class="green">Collection: <code>declarations</code> (System 2 — rPET Declaration) <span class="version-tag new">NEW v1.1</span></h3>
+  <table>
+    <tr><th class="green">Field</th><th class="green">Type</th><th class="green">Required</th><th class="green">Description</th></tr>
+    <tr><td>id</td><td>number</td><td>Auto</td><td>Internal auto-increment identifier</td></tr>
+    <tr><td>combined_code</td><td>string</td><td>Yes</td><td>UNIQUE (case-insensitive). Bottle neck code combining VendorCode + ProductVariantCode + SKUCode + RecycleCode. E.g. "MBB306C". Max 20 chars, alphanumeric.</td></tr>
+    <tr><td>product_name</td><td>string</td><td>Yes</td><td>Full product name — e.g. "RCPL rPET Water Bottle 500ml"</td></tr>
+    <tr><td>sku</td><td>string</td><td>Yes</td><td>Stock Keeping Unit — e.g. "RCPL-PET-500"</td></tr>
+    <tr><td>manufacturing_location</td><td>string</td><td>Yes</td><td>Full manufacturing address including city, state, and PIN code</td></tr>
+    <tr><td>recycle_content</td><td>number (0–100)</td><td>Yes</td><td>Recycled plastic content as percentage — e.g. 100 for 100% rPET</td></tr>
+    <tr><td>pwm_reg_no</td><td>string</td><td>Yes</td><td>PWM (Plastic Waste Management) Registration Number — e.g. "PWM/MH/2024/001234"</td></tr>
+    <tr><td>status</td><td>'active' | 'inactive'</td><td>Auto</td><td>Default: 'active'. Soft-delete sets to 'inactive'.</td></tr>
+    <tr><td>created_at</td><td>string (ISO 8601)</td><td>Auto</td><td>Record creation timestamp</td></tr>
+    <tr><td>updated_at</td><td>string (ISO 8601)</td><td>Auto</td><td>Last modification timestamp</td></tr>
+  </table>
+
+  <div class="box box-teal">
+    <strong>Bottle Code Structure (System 2):</strong><br/>
+    The <code>combined_code</code> is a concatenation of four lookup segments:<br/>
+    <br/>
+    <code style="font-size: 13px;">[ VendorCode ][ ProductVariantCode ][ SKUCode ][ RecycleCode ]</code><br/>
+    <br/>
+    Example: <strong><code>MBB306C</code></strong> = Vendor <code>M</code> + Variant <code>BB</code> + SKU code <code>306</code> + Recycle code <code>C</code><br/>
+    Each segment maps to a lookup table administered by the regulatory team.
+  </div>
+
+  <h3>DB File Schema (rpet.json)</h3>
+  <pre>{
+  "products": [ ...RpetProduct[] ],
+  "nextId": 4,
+  "declarations": [ ...RpetDeclaration[] ],
+  "declNextId": 3
+}</pre>
 
   <!-- 9. API -->
   <h2 class="section">9. API Specification</h2>
-  <h3>Public Endpoint</h3>
+
+  <h3>System 1 — FSSAI Public Endpoint</h3>
   <table>
     <tr><th>Method</th><th>Path</th><th>Auth</th><th>Description</th></tr>
     <tr><td>GET</td><td>/api/products/lookup?code={batchCode}</td><td>None</td><td>Consumer product lookup by batch code</td></tr>
@@ -296,40 +423,77 @@
   </table>
   <table>
     <tr><th>Response</th><th>Status</th><th>Condition</th></tr>
-    <tr><td><code>{ success: true, data: RpetProduct }</code></td><td>200</td><td>Valid active code</td></tr>
-    <tr><td><code>{ success: false, error: "not currently available" }</code></td><td>400</td><td>Code exists but product inactive</td></tr>
-    <tr><td><code>{ success: false, error: "No product found..." }</code></td><td>404</td><td>Code does not exist</td></tr>
+    <tr><td><code>{ success: true, data: RpetProduct }</code></td><td>200</td><td>Valid active code found</td></tr>
+    <tr><td><code>{ success: false, error: "No product found..." }</code></td><td>404</td><td>Code does not exist or is inactive</td></tr>
     <tr><td><code>{ success: false, error: "validation message" }</code></td><td>400</td><td>Invalid code format</td></tr>
   </table>
-  <h3>Admin Endpoints</h3>
+
+  <h3 class="green">System 2 — rPET Declaration Public Endpoint <span class="version-tag new">NEW v1.1</span></h3>
+  <table>
+    <tr><th class="green">Method</th><th class="green">Path</th><th class="green">Auth</th><th class="green">Description</th></tr>
+    <tr><td>GET</td><td>/api/rpet/lookup?code={combinedCode}</td><td>None</td><td>Consumer declaration lookup by bottle neck code</td></tr>
+  </table>
+  <table>
+    <tr><th>Response</th><th>Status</th><th>Condition</th></tr>
+    <tr><td><code>{ success: true, data: RpetDeclaration }</code></td><td>200</td><td>Valid active code found</td></tr>
+    <tr><td><code>{ success: false, error: "No declaration found..." }</code></td><td>404</td><td>Code does not exist or is inactive</td></tr>
+    <tr><td><code>{ success: false, error: "validation message" }</code></td><td>400</td><td>Invalid code format</td></tr>
+  </table>
+
+  <h3>Admin Endpoints — System 1 (FSSAI Products)</h3>
   <table>
     <tr><th>Method</th><th>Path</th><th>Description</th></tr>
-    <tr><td>GET</td><td>/api/admin/products?page=1&amp;limit=20</td><td>List all products (paginated)</td></tr>
-    <tr><td>GET</td><td>/api/admin/products/search?q=query</td><td>Search products</td></tr>
-    <tr><td>GET</td><td>/api/admin/products/:id</td><td>Get single product</td></tr>
-    <tr><td>POST</td><td>/api/admin/products</td><td>Create product (201)</td></tr>
-    <tr><td>PUT</td><td>/api/admin/products/:id</td><td>Update product</td></tr>
-    <tr><td>DELETE</td><td>/api/admin/products/:id</td><td>Soft-delete (set inactive)</td></tr>
+    <tr><td>GET</td><td>/api/admin/products?page=1&amp;limit=20</td><td>List all products (paginated, sorted by created_at desc)</td></tr>
+    <tr><td>GET</td><td>/api/admin/products/search?q=query</td><td>Search products by vendor name, category, or batch code</td></tr>
+    <tr><td>GET</td><td>/api/admin/products/:id</td><td>Get single product by ID</td></tr>
+    <tr><td>POST</td><td>/api/admin/products</td><td>Create product — returns 201 with new record</td></tr>
+    <tr><td>PUT</td><td>/api/admin/products/:id</td><td>Update product (batch_code field ignored in updates)</td></tr>
+    <tr><td>DELETE</td><td>/api/admin/products/:id</td><td>Soft-delete — sets status to 'inactive'</td></tr>
+  </table>
+
+  <h3 class="green">Admin Endpoints — System 2 (rPET Declarations) <span class="version-tag new">NEW v1.1</span></h3>
+  <table>
+    <tr><th class="green">Method</th><th class="green">Path</th><th class="green">Description</th></tr>
+    <tr><td>GET</td><td>/api/admin/rpet?page=1&amp;limit=20</td><td>List all declarations (paginated, sorted by created_at desc)</td></tr>
+    <tr><td>GET</td><td>/api/admin/rpet/search?q=query</td><td>Search by combined_code, product_name, or SKU</td></tr>
+    <tr><td>GET</td><td>/api/admin/rpet/:id</td><td>Get single declaration by ID</td></tr>
+    <tr><td>POST</td><td>/api/admin/rpet</td><td>Create declaration — returns 201 with new record</td></tr>
+    <tr><td>PUT</td><td>/api/admin/rpet/:id</td><td>Update declaration (combined_code field ignored in updates)</td></tr>
+    <tr><td>DELETE</td><td>/api/admin/rpet/:id</td><td>Soft-delete — sets status to 'inactive'</td></tr>
+  </table>
+
+  <h3>Shared API Conventions</h3>
+  <table>
+    <tr><th>Convention</th><th>Detail</th></tr>
+    <tr><td>Response envelope</td><td><code>{ success: boolean, data?: T, error?: string, message?: string }</code></td></tr>
+    <tr><td>Rate limiting</td><td>Public: 100 req/15 min. Admin: 300 req/15 min (per IP)</td></tr>
+    <tr><td>Validation errors</td><td>400 with first failing validation message</td></tr>
+    <tr><td>Not found</td><td>404 via NotFoundError middleware</td></tr>
+    <tr><td>Conflict (duplicate code)</td><td>409 with descriptive message</td></tr>
+    <tr><td>Code normalisation</td><td>All lookup codes converted to UPPERCASE before DB comparison</td></tr>
   </table>
 
   <!-- 10. UX -->
   <h2 class="section">10. UI/UX Requirements</h2>
   <table>
-    <tr><th>Page</th><th>Key Elements</th><th>Design Notes</th></tr>
-    <tr><td><strong>Landing Page</strong> (/)</td><td>RCPL logo, 3-step instruction box, batch code input, "Get Product Details" button, footer</td><td>Mobile-first, blue gradient bg, white card, large monospace input, auto-uppercase</td></tr>
-    <tr><td><strong>Product Info</strong> (/product/:code)</td><td>Back button, batch code display, product name hero, 3 info cards, status badge, loading skeleton</td><td>Info cards: Product Details, Manufacturer Details, Compliance. Shimmer skeleton loading.</td></tr>
-    <tr><td><strong>Admin Portal</strong> (/admin/*)</td><td>Collapsible sidebar, product table with search+pagination, Create/Edit form, confirmation modal, toasts</td><td>Desktop-optimised, responsive on mobile. Blue theme. Inline validation.</td></tr>
+    <tr><th>Page</th><th>URL</th><th>Key Elements</th><th>Design Notes</th></tr>
+    <tr><td><strong>FSSAI Landing Page</strong></td><td><code>/</code></td><td>RCPL logo, 3-step instruction box, batch code input, "Get Product Details" button</td><td>Mobile-first, blue gradient bg (#0D47A1→#1976D2), white card, monospace input, auto-uppercase</td></tr>
+    <tr><td><strong>FSSAI Product Info</strong></td><td><code>/product/:code</code></td><td>Back button, batch code header, product name hero, 3 info cards, status badge, loading skeleton</td><td>Cards: Product Details · Manufacturer Details · Compliance. Shimmer skeleton.</td></tr>
+    <tr><td><strong>rPET Landing Page</strong></td><td><code>/rpet</code></td><td>Recycle icon (♻️), instructions with code structure diagram, bottle code input, "View Recycle Declaration" button</td><td>Green theme (green-900 → teal-700 gradient). Shows code breakdown: Vendor + Variant + SKU + Recycle segments.</td></tr>
+    <tr><td><strong>rPET Declaration Info</strong></td><td><code>/rpet/product/:code</code></td><td>Back button, product name hero, recycle % badge, animated progress bar, manufacturing card, PWM compliance card</td><td>Green gradient header. Hero card shows ♻️ icon + large % number. Progress bar animates on load.</td></tr>
+    <tr><td><strong>Admin Portal</strong></td><td><code>/admin/*</code></td><td>Collapsible sidebar with two nav sections (FSSAI Products / rPET Declarations), product/declaration tables, create/edit forms, confirmation modal, toasts, footer links to both consumer pages</td><td>Desktop-optimised. Blue (FSSAI section) and green (rPET section) active states in sidebar. Inline form validation.</td></tr>
   </table>
 
   <!-- 11. Metrics -->
   <h2 class="section">11. Success Metrics</h2>
   <table>
     <tr><th>Metric</th><th>Target</th><th>Measurement Method</th></tr>
-    <tr><td>Consumer page load time</td><td>&lt; 3 seconds on 4G</td><td>Lighthouse / browser DevTools</td></tr>
-    <tr><td>API lookup response P95</td><td>&lt; 500ms</td><td>Server logs / monitoring</td></tr>
+    <tr><td>Consumer page load time (both systems)</td><td>&lt; 3 seconds on 4G</td><td>Lighthouse / browser DevTools</td></tr>
+    <tr><td>API lookup response P95 (both systems)</td><td>&lt; 500ms</td><td>Server logs / monitoring</td></tr>
     <tr><td>QR scan → info display</td><td>&lt; 10 seconds</td><td>Manual end-to-end test</td></tr>
-    <tr><td>Admin onboarding time</td><td>&lt; 30 minutes</td><td>User observation</td></tr>
+    <tr><td>Admin onboarding time</td><td>&lt; 30 minutes</td><td>User observation with Nidhi</td></tr>
     <tr><td>Admin form error rate</td><td>&lt; 2% of submissions</td><td>Validation error logs</td></tr>
+    <tr><td>Declaration records managed (System 2)</td><td>All active SKUs entered by Nidhi before QR mapping</td><td>Admin portal record count</td></tr>
   </table>
 
   <!-- 12. Out of Scope -->
@@ -342,50 +506,87 @@
     <li>Multi-language support (Hindi, regional languages)</li>
     <li>Native mobile app</li>
     <li>Price or inventory information</li>
+    <li>Dynamic recycle code lookup table management via UI (P2 item — currently hardcoded seed data)</li>
   </ul>
 
   <!-- 13. Risks -->
   <h2 class="section">13. Risks &amp; Mitigations</h2>
   <table>
     <tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th></tr>
-    <tr><td>QR Planet URL mapping delay</td><td>Low</td><td>High</td><td>Provide URL early; test with direct URL first</td></tr>
-    <tr><td>Regulatory team needs more fields</td><td>Medium</td><td>Medium</td><td>Schema designed with optional fields; easy to add columns</td></tr>
+    <tr><td>QR Planet URL mapping delay</td><td>Low</td><td>High</td><td>Provide both URLs early; test with direct URL first</td></tr>
+    <tr><td>Regulatory team needs more fields</td><td>Medium</td><td>Medium</td><td>JSON schema is flexible — add fields without migration scripts</td></tr>
     <tr><td>Mobile network failures</td><td>Medium</td><td>High</td><td>Error states with retry; loading skeletons for perceived performance</td></tr>
-    <tr><td>SQLite concurrency under load</td><td>Low</td><td>Medium</td><td>WAL mode enabled; upgrade to PostgreSQL if traffic grows</td></tr>
-    <tr><td>Admin portal misuse (no auth)</td><td>Medium</td><td>Medium</td><td>P2: Add login auth in Sprint 2</td></tr>
+    <tr><td>JSON file DB concurrency under high load</td><td>Low</td><td>Medium</td><td>In-memory cache + synchronous writes; upgrade to PostgreSQL if traffic grows beyond prototype scale</td></tr>
+    <tr><td>Admin portal misuse (no auth)</td><td>Medium</td><td>Medium</td><td>P2: Add login auth in Sprint 2 before public launch</td></tr>
+    <tr><td>Combined code collision (System 2)</td><td>Low</td><td>Low</td><td>UNIQUE constraint on combined_code; 409 conflict response on duplicate</td></tr>
+    <tr><td>PWM regulation field changes</td><td>Low</td><td>Medium</td><td>Declaration schema uses nullable optional fields; easy to extend without breaking existing records</td></tr>
   </table>
 
   <!-- 14. Acceptance Criteria -->
   <h2 class="section">14. Acceptance Criteria</h2>
+  <h3>System 1 — FSSAI</h3>
   <ul class="checklist">
-    <li>Consumer can scan QR, enter "AA", see full product details within 10 seconds on mobile</li>
-    <li>Inactive product code returns "information not available" (not a 404 error)</li>
+    <li>Consumer can scan QR, enter "AA", see full FSSAI product details within 10 seconds on mobile</li>
+    <li>Inactive product code returns "not available" (not a raw error)</li>
     <li>Non-existent code returns friendly "product not found" with back button</li>
     <li>Admin can create a new product record with all required fields</li>
     <li>Admin can edit vendor address and FSSAI license number</li>
-    <li>Admin can deactivate a product (soft delete with confirmation)</li>
+    <li>Admin can deactivate a product (soft delete with confirmation modal)</li>
     <li>FSSAI validation rejects anything that is not exactly 14 digits</li>
+  </ul>
+  <h3 class="green">System 2 — rPET Declaration <span class="version-tag new">NEW v1.1</span></h3>
+  <ul class="checklist">
+    <li>Consumer can scan QR, enter "MBB306C", see recycle declaration with % and PWM details within 10 seconds</li>
+    <li>Recycle content progress bar renders correctly for values between 0% and 100%</li>
+    <li>Inactive declaration code returns friendly error with "Try Again" button</li>
+    <li>Admin can create a new declaration with combined_code, product name, manufacturing location, recycle %, and PWM reg no</li>
+    <li>Admin can edit recycle content and PWM registration number</li>
+    <li>Admin can deactivate a declaration (soft delete with confirmation modal)</li>
+    <li>Duplicate combined_code on creation returns 409 conflict error in admin form</li>
+    <li>Admin sidebar shows both "FSSAI Products" and "rPET Declarations" sections</li>
+    <li>Admin footer provides quick links to both consumer-facing pages</li>
+  </ul>
+  <h3>Shared</h3>
+  <ul class="checklist">
     <li>All pages render correctly on iPhone SE (375px) screen width</li>
     <li>CI/CD pipeline passes: lint → test → build → security audit</li>
-    <li>Landing page URL is provided for QR Planet mapping</li>
+    <li>Both landing page URLs are provided for QR Planet mapping</li>
+    <li>GitHub repository is up to date with all changes pushed to main</li>
   </ul>
 
   <!-- 15. Delivery Plan -->
   <h2 class="section">15. Delivery Plan</h2>
+  <h3>Sprint 1 — System 1: FSSAI (Completed)</h3>
   <div>
-    <div class="phase"><div class="phase-num">0</div><div class="phase-body"><strong>Foundation</strong> — CLAUDE.md, package.json, tsconfig, .gitignore, CI/CD pipeline <em>(Day 1)</em></div></div>
-    <div class="phase"><div class="phase-num">1</div><div class="phase-body"><strong>Backend API</strong> — Express + SQLite + all endpoints (lookup + admin CRUD) <em>(Day 1)</em></div></div>
-    <div class="phase"><div class="phase-num">2</div><div class="phase-body"><strong>Consumer Frontend</strong> — Landing Page + Product Info Page (mobile-first, React + Tailwind) <em>(Day 1–2)</em></div></div>
-    <div class="phase"><div class="phase-num">3</div><div class="phase-body"><strong>Admin Portal</strong> — Product list, create/edit forms, pagination, search <em>(Day 2)</em></div></div>
-    <div class="phase"><div class="phase-num">4</div><div class="phase-body"><strong>Testing</strong> — Unit + integration tests for frontend and backend <em>(Day 2)</em></div></div>
-    <div class="phase"><div class="phase-num">5</div><div class="phase-body"><strong>Security Review + Deployment</strong> — URL delivery to QR Planet team <em>(Day 3)</em></div></div>
-    <div class="phase"><div class="phase-num">6</div><div class="phase-body"><strong>Demo &amp; Feedback</strong> — Regulatory team walkthrough, Nidhi shares final variable list <em>(Week 2)</em></div></div>
+    <div class="phase"><div class="phase-num">0</div><div class="phase-body"><strong>Foundation</strong> — CLAUDE.md, package.json, tsconfig, .gitignore, CI/CD pipeline</div></div>
+    <div class="phase"><div class="phase-num">1</div><div class="phase-body"><strong>Backend API</strong> — Express + JSON file DB + all FSSAI endpoints (lookup + admin CRUD)</div></div>
+    <div class="phase"><div class="phase-num">2</div><div class="phase-body"><strong>Consumer Frontend</strong> — Landing Page + Product Info Page (mobile-first, React + Tailwind, blue theme)</div></div>
+    <div class="phase"><div class="phase-num">3</div><div class="phase-body"><strong>Admin Portal</strong> — Product list, create/edit forms, pagination, search, toasts</div></div>
+    <div class="phase"><div class="phase-num">4</div><div class="phase-body"><strong>Testing</strong> — Unit + integration tests for frontend (Vitest + @testing-library) and backend</div></div>
+    <div class="phase"><div class="phase-num">5</div><div class="phase-body"><strong>GitHub + CI/CD</strong> — Repository created, initial commit pushed, Actions pipeline running</div></div>
+  </div>
+
+  <h3 class="green">Sprint 2 — System 2: rPET Declaration (Completed in v1.1)</h3>
+  <div>
+    <div class="phase"><div class="phase-num green">1</div><div class="phase-body"><strong class="green">Backend Extension</strong> — DB schema extended with <code>declarations</code> collection. New routes: <code>/api/rpet/lookup</code> and <code>/api/admin/rpet</code> (full CRUD)</div></div>
+    <div class="phase"><div class="phase-num green">2</div><div class="phase-body"><strong class="green">Consumer Pages</strong> — <code>/rpet</code> landing page (green theme, code structure guide) + <code>/rpet/product/:code</code> declaration info page with animated recycle progress bar</div></div>
+    <div class="phase"><div class="phase-num green">3</div><div class="phase-body"><strong class="green">Admin Extension</strong> — <code>/admin/rpet</code> list page + <code>/admin/rpet/new</code> &amp; edit forms. Admin sidebar updated with two nav sections. Footer links to both consumer pages.</div></div>
+    <div class="phase"><div class="phase-num green">4</div><div class="phase-body"><strong class="green">Seeded Demo Data</strong> — 2 sample rPET declarations: MBB306C (100% rPET, 500ml) and MBB312A (75% rPET, 1L juice)</div></div>
+    <div class="phase"><div class="phase-num green">5</div><div class="phase-body"><strong class="green">PRD Updated &amp; Committed</strong> — PRD v1.1 documenting both systems. All changes pushed to GitHub.</div></div>
+  </div>
+
+  <h3>Sprint 3 — Hardening (Planned)</h3>
+  <div>
+    <div class="phase"><div class="phase-num" style="background:#607D8B">6</div><div class="phase-body"><strong>Admin Authentication</strong> — Login screen + session management for regulatory team (P2)</div></div>
+    <div class="phase"><div class="phase-num" style="background:#607D8B">7</div><div class="phase-body"><strong>Production Deployment</strong> — URL delivery to QR Planet for both QR codes; uptime monitoring</div></div>
+    <div class="phase"><div class="phase-num" style="background:#607D8B">8</div><div class="phase-body"><strong>Regulatory Team Walkthrough</strong> — Demo with Nidhi; onboarding for both admin sections</div></div>
   </div>
 
   <br/><br/>
   <div style="border-top: 2px solid #1565C0; padding-top: 12px; text-align: center; color: #888; font-size: 11px;">
-    RCPL rPET QR Code Information System · PRD v1.0 · Ashish Chandorkar · April 2026<br/>
-    Generated with Claude Code (Opus 4.6) · Multi-Agent SDLC Framework
+    RCPL rPET QR Code Information System · PRD v1.1 · Ashish Chandorkar · April 2026<br/>
+    Dual QR System: FSSAI Product Information + rPET Plastic Recycle Declaration<br/>
+    Generated with Claude Code (Sonnet 4.6) · Multi-Agent SDLC Framework
   </div>
 
 </div>
